@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        #large-display {
+            width: 400px;
+            height: 300px;
+            margin: 20px auto;
+            border: 3px solid #ccc;
+            background-size: cover;
+            background-position: center;
+            background-color: #ddd;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto;
+        }
+
+        .photo {
+            width: 200px;
+            height: 150px;
+            border: 2px solid #ccc;
+            background-size: cover;
+            background-position: center;
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Photo Gallery</h1>
+   
+    <div id="large-display"></div>
+
+   
+    <div class="gallery">
+        <div id="photo1" class="photo" onclick="showPhoto('photo1')"></div>
+        <div id="photo2" class="photo" onclick="showPhoto('photo2')"></div>
+    </div>
+
+    
+    <button onclick="undoPhoto()">Undo</button>
+
+    <script>
+       
+        const originalPhotos = {
+            photo1: "C:/Users/windos 10/Downloads/jshomework/fencing-img1.webp",
+            photo2: "C:/Users/windos 10/Downloads/jshomework/fencing-img2.jpg"
+        };
+
+        
+        let currentPhoto = "";
+
+       
+        document.getElementById('photo1').style.backgroundImage = "url('" + originalPhotos.photo1 + "')";
+        document.getElementById('photo2').style.backgroundImage = "url('" + originalPhotos.photo2 + "')";
+
+        function showPhoto(photoId) {
+            const photoUrl = originalPhotos[photoId];
+            const largeDisplay = document.getElementById('large-display');
+            largeDisplay.style.backgroundImage = "url('" + photoUrl + "')";
+            currentPhoto = photoId; 
+        }
+
+       
+        function undoPhoto() {
+            const largeDisplay = document.getElementById('large-display');
+            largeDisplay.style.backgroundImage = ""; 
+            currentPhoto = ""; 
+        }
+    </script>
+</body>
+</html>
